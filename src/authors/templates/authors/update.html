@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Редактировать автора {{ object.name }} {% endblock title %}
+{% block body %}
+{% if user.is_staff %}
+<div class="container">
+<h1>Редактировать автора {{ object.name }}</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-danger">Отправить</button>
+</form>
+</div>
+{% else %}
+<h1>Staff only!</h1>
+{% endif %}
+{% endblock body %}

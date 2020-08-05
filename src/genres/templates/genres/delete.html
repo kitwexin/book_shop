@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Удалить жанр {{ object.name }} {% endblock title %}
+{% block body %}
+{% if user.is_staff %}
+<div class="container">
+<h1>Удалить жанр "{{ object.name }}"</h1>
+  <form action="" method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Вы уверены?</button>
+</div>
+{% else %}
+<h1>Staff only!</h1>
+{% endif %}
+{% endblock body %}

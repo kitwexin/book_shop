@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Корзина {% endblock title %}
+{% block body %}
+  <div class="container">
+    <h1>Содержимое корзины {{ object.book }}</h1>
+    <table class="table">
+    <tr>
+    <td>Название</td><td>Количество</td><td>Цена</td><td>Действия</td>
+    </tr>
+    {% for product_in_cart in object.books.all %}
+    <tr>
+    <td>{{ product_in_cart.book.name }}</td><td>{{ product_in_cart.quantity }}</td><td>{{ product_in_cart.price }} BYN</td>
+    <td><a href="{% url 'cart:add' %}?book_pk={{ product_in_cart.book.pk }}"><i class="fas fa-edit"></i></a> 
+    <a href="{% url 'cart:delete' product_in_cart.pk %}"><i class="fas fa-trash-alt"></a></td>
+    </tr>
+    {% endfor %}
+    </table>
+    <p>Стоимость: {{ object.price }} BYN</p>
+    <a href="{% url 'order:create' %}" class="btn btn-success">Оформить заказ</a>
+  </div>
+{% endblock body %}

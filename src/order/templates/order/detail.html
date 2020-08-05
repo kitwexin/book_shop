@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Заказ {{ object }} {% endblock title %}
+{% block body %}
+<div class="container">
+<h1>Заказ {{ object.cart }}</h1>
+<div>
+    <p>Номер заказа - {{ object.pk }}</p>
+    <p>Состав заказа - {{ object.cart.books.all }}</p>
+    <p>Пользователь - {{ object.cart.user }}</p>
+    <p>Дата создания - {{ object.created }}</p>
+    <p>Номер телефона - {{ object.contact_phone }}</p>
+    <p><a href="{% url 'order:delete' object.pk %}"><button type="submit" class="btn btn-danger">Удалить заказ</button></a></p>
+</div>
+{% endblock body %}

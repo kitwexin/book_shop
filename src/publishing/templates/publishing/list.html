@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Список издательств {% endblock title %}
+{% block body %}
+<div class="container">
+<h1>Все издательства</h1>
+  {% if user.is_staff %}
+  <a href="{% url 'publishing:create' %}" class="btn btn-success">Добавить новое издательство</a>
+  {% else %}
+  {% endif %}
+  <table class="table bordered-table">
+  <tr>
+  <th>Номер</th>
+  <th>Название</th>
+  {% if user.is_staff %}
+  <th>#</th>
+  {% else %}
+  {% endif %}
+  </tr>
+  {% for row in object_list %}
+  <tr>
+    <td>{{ row.pk }}</td>
+    <td><a href="{% url 'publishing:detail' row.pk %}">{{ row.name }}</a></td>
+    {% if user.is_staff %}
+    <td>
+    <a href="{% url 'publishing:update' row.pk %}"><i class="fas fa-edit"></i></a>
+    <a href="{% url 'publishing:delete' row.pk %}"><i class="fas fa-trash-alt"></i></a>
+    </td>
+  {% else %}
+  {% endif %}
+  </tr>
+  {% endfor %}
+  </table>
+{% include "paginator.html" %}
+</div>
+{% endblock body %}

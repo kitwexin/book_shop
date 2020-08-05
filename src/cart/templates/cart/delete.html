@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Удалить книгу {{ object.name }} {% endblock title %}
+{% block body %}
+<div class="container">
+<h1>Удалить книгу "{{ object.book.name }}"</h1>
+  <form action="" method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Вы уверены?</button>
+  </form>
+</div>
+{% endblock body %}

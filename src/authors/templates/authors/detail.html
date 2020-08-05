@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Автор {{ object.name }} {% endblock title %}
+{% block body %}
+<div class="container">
+<h1>Автор "{{ object.name }}"</h1>
+<div>
+    <font size=5>
+    Имя автора - {{ object.name }}
+    <br>
+    Описание автора - {{ object.description }}
+    </font>
+    </div>
+</div>
+{% endblock body %}

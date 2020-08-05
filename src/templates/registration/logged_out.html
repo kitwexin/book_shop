@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+<br><br>
+<div class="container">
+{% if form.errors %}
+<p>Вы уже не авторизованны</p>
+{% else %}
+<p>Вы успешно вышли из сети</p>
+{% endif %}
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Книга {{ object.name }} {% endblock title %}
+{% block body %}
+<div class="container">
+<h1>Книга "{{ object.name }}"</h1>
+<div>
+    <font size=5>
+    Название книги - {{ object.name }}
+    <br>
+    Стоимость книги - {{ object.price }}
+    <br>
+    Год издания - {{ object.post_year }}
+    <br>   
+    Обложка книги - <img src="{{ object.image.url }}" alt="" width="189" height="255">
+    <br>
+    Количество страниц - {{ object.pages }}
+    <br>
+    Переплет - {{ object.binding }}
+    <br>
+    Вес книги - {{ object.weight }}
+    <br>  
+    Возрастное ограничение - {{ object.age_limit }}
+    <br>  
+    Формат - {{ object.form }}
+    <br>
+    ISBN - {{ object.isbn }}
+    <br>     
+    Автор книги - {{ object.author }}
+    <br>
+    Издательство - {{ object.publishing }}
+    <br>
+    Жанр книги - {{ object.genre }}
+    <br>
+    Описание книги - {{ object.description }}
+    <br>
+    На складе - {{ object.available }}
+    <a href="{% url 'cart:add' %}?book_pk={{ object.pk }}" class="btn btn-success">Добавить в корзину</a>
+    </font>
+    </div>
+</div>
+{% endblock body %}

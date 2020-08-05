@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Список заказов {% endblock title %}
+{% block body %}
+<div class="container">
+{% if user.is_staff %}
+<h1>Все заказы</h1>
+  <table class="table bordered-table">
+  <tr>
+  <th>Номер</th>
+  <th>Заказ</th>
+  <th>Пользователь</th>
+  <th>Время создания</th>
+  {% for row in object_list %}
+  <tr>
+    <td>{{ row.pk }}</td>
+    <td><a href="{% url 'order:detail' row.pk %}">{{ row.cart }}</a></td>
+    <td><a href="#">{{ row.cart.user }}</a></td>
+    <td><a href="#">{{ row.created }}</a></td>
+    <td><a href="{% url 'order:delete' row.pk %}"><button type="submit" class="btn btn-danger">Удалить заказ</button></a></td>
+  </tr>
+  {% endfor %}
+  </table>
+{% include "paginator.html" %}
+{% else %}
+<h1>Staff only!</h1>
+{% endif %}
+</div>
+{% endblock body %}

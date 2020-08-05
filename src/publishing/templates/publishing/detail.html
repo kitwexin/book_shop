@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Издательство {{ object.name }} {% endblock title %}
+{% block body %}
+<div class="container">
+    <h1>Издательство "{{ object.name }}"</h1>
+    <div>
+    <font size=5>
+    Издательство - {{ object.name }}
+    <br>
+    Описание издательства - {{ object.description }}
+    </font>
+    </div>
+</div>
+{% endblock body %}
